@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--get방식은 위에 쿼리 스트링 표시, post는 미표시 (개인정보 보호할 떄 사용ㄴ)-->
+    <form action="html-form-res.html" method="post"> <!--form 태그는 액션속성의 값의 경로로 name의 value 속성 값들을 요청할 것임-->
+        <fieldset>
+            <legend>회원가입</legend>
+
+            <p>ID: <input type="text" name='id'></p>
+            <p>PW: <input type="password" name='pw'></p>
+            <p>Email 수신 여부<br>
+                <input type="radio" name='rdo' value="y"> y  <!-- name은 value-->
+                <input type="radio" name='rdo' value="n"> n
+            </p>
+
+            <p>관심분야<br>
+                <input type="checkbox" name='web' value="web"> WEB <br>
+                <input type="checkbox" name='ai' value="ai"> Data Science <br>
+                <input type="checkbox" name='engi' value="engi"> Data Engineer 
+            </p>
+
+            <p>하고싶은 말
+                <textarea name="etc" cols="60" rows="10"></textarea> <!--열이 60개=가로가 60 , 행이 10개=세로가 10-->
+            </p>
+
+            <p>
+                <input type="button" value="그냥 버튼"> <br>
+                <input type="reset" value="취소"> <br>
+                <input type="submit" value="전송"> <!--name 의 value 값을  query string 으로 만들어서 action 속성의 경로로 전달-->
+            </p>
+        </fieldset>
+
+    </form>
+
+
+
+
+
+
+
+</body>
+</html>
