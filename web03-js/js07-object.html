@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        function object01(){ 
+            this.name01="홍길동"  //꺼내오고싶은 값은 this를 붙여라 ,객체에서 가져올 수 있는 name01
+            var name02="hong gd"
+            this.getName02=function(){
+                return name02;
+            }
+        }
+
+        //***객체 리터럴  ▼객체 생성
+        var object02={ //딕셔너리 , 키를 통해서 값 가져올거야 ,옵젝2는 전역변수임
+            name: "kim-sd", prn: function(){ alert(object02.name+"의 전화번호 : 010-2222-2222")
+            }  // ㄴprn은 그냥 만들어준 이름임 
+        }
+
+
+        function objTest(){
+            //객체 생성
+            var obj01=new object01() //new :오브젝트 객체를 만듦 (설계도에 object 상자가 생김) 상자 안에 obj01이라는 변수를 만듦
+            //alert(obj01.name01) // this로 지정해서 name01을 가져올 수 있음 
+            //alert(obj01.name02) //지역변수 name02를 바로 지정했기 때문에 undefined
+            //alert(obj01.getName02()) // this로 지정해서 getName02의 함수 리턴값 가져옴 , 값이라서 alert
+        
+            // alert(object02.name)
+            // object02.prn() // 함수니까 ()로 실행
+            obj01.prn()
+        
+        }
+
+        object01.prototype.prn = function(){ //prototype : 객체에 기능을 추가하고싶을 때 사용 ,이미 만들어진 애 냅두고 아래에 기능을 추가
+            alert(this.name01 + "의 전화번호는 010-1111-1111")
+        } // 프로토타입은 외부에서 사용하기 때문에 var name02(지역변수)는 사용 못함 ! 
+
+    </script>
+</head>
+<body>
+    
+    <h1>object (객체)</h1>
+
+    <pre>
+        객체의 구성
+        -property : 속성
+        -funtion (method) :기능
+        -this : 객체 내부의 메서드나 속성을 정의
+        -prototype : 객체의 확장
+    </pre>
+
+    <button onclick="objTest()">확인</button>
+
+
+</body>
+</html>
+

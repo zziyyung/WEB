@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        function ajaxTest(){
+
+            var xhr=new XMLHttpRequest()
+            //통신 관련 객체 생성 , 비동기 통신 시작 
+
+            xhr.onreadystatechange = function(){
+                //onreadystatechange : readystate가 변하는 event 
+                //readystate가 변할 때 마다 이 함수 호출 ;; call back함수
+                
+                if(xhr.readyState == 4){
+                    //4: 요청의 완료 (제대로 요청이 되면- 요청을 하면 응답이 됨)
+
+                    if (xhr.status==200){
+                        //200: 정상 응답  (성공적인 응답)
+                        //alert(xhr.responseText) 
+                        //요청해서 가지고 오는 애가 text로 가져와짐
+                        var respXml=xhr.responseXML //->데이터 가지고 옴
+                        //xml객체가 가져와졌다
+                        //console.log(respXml)
+                        //console.log(typeof(respXml))
+
+                        //가지고 온 데이터 table에 나타내기
+
+                        var table=document.getElementById('tb')
+                        var rows=respXml.getElementsByTagName('ROW')
+                        //HTML컬렉션, ROW 배열  : 노드리스트로 반환 (안에 있는 ROW 하나하나는 Node)
+                        console.log(rows)
+
+                        // 1. column 이름을 만들자
+                        //ROW 자식들의 태그네임이 열 이름
+                        var columnTr=document.createElement("tr") //컬럼 이름
+
+                        for (var i=0 ; i < rows[0].children.length ; i++){
+                            //console.log(rows[0].children[i].nodeName)
+                            var th = document.createElement("th")
+                            th.appendChild(document.createTextNode(rows[0].children[i].nodeName))
+
+                            columnTr.appendChild(th) //th를 tr에 넣었음 > 5개 만들어짐
+                        }
+                        table.appendChild(columnTr) //tr에 들어있는 th를 table에 넣음
+
+                        // 2. data 만들자
+                        for (var i =0 ; i < rows.length ; i++){
+                            var tr= document.createElement("tr")
+                            for (var j=0 ; j <rows[i].children.length ; j ++) {
+                                var td = document.createElement("td")
+                                td.appendChild(document.createTextNode(rows[i].children[j].textContent))
+                                //children의 텍스트값 가져와야하니까 textContent
+                                // td.textContent = rows[i].children[j].textContent;
+
+                                tr.appendChild(td)
+                            }
+                            table.appendChild(tr)
+                        }
+                    }
+                }
+            }
+            xhr.open('GET','emplist.xml')
+            xhr.send() //실행
+            //get방식으로 해당경로에 요청
+
+
+        }
+
+
+
+
+
+    </script>
+</head>
+<body>
+    <!--
+        ajax :Asynchronous Javasript And Xml (xml 확장해서 우리가 우리 맘대로 만들어서?)
+        비 동기 통신
+        ;요청하고 자기 할 일 함
+        ;call back hell : 요청한 값이 오기도 전에 ajax는 다음 코드로 넘어가서 오류발생
+        'call back' : call해야지back할거야 =로딩이 다 됐을 때 onclick할거야 js10-date
+
+        //클라이언트와 서버의 상황이 현재 동기화 되어있지 않음 -; 위에 주소창 안 바뀜
+        //서버에서 문서를 불러주는 것이 아니라 데이터(같은 것)을 가져옴
+        //서버에서는 클라이언트가 뭐 하는지 모름 
+        //아이스크림 심부름 안 기다리고 수업 나감 ; 비 동기 통신 
+    -->
+
+    <button onclick="ajaxTest()">ajax</button>
+
+    <table id="tb" border="1"></table>
+
+</body>
+</html>

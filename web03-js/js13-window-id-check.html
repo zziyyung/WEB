@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <script type="text/javascript">
+        var ids=["multi","java","script"];
+        
+        function confirmChk(){
+            var id=document.getElementsByName("id")[0].value;
+            var div=document.getElementsByTagName("div")[0];
+            if(ids.indexOf(id)!=-1){ 
+                //indexOf():찾는 문자열의 첫번째 위치 반환,찾는 문자열 없으면 -1
+                //ids=배열, 배열인데도 문자열 함수 indexOf()를 사용할 수 있구나!
+                div.innerHTML="<b>아이디가 존재합니다.</b>";
+            }else{
+                var userId="사용할 수 있는 아이디입니다."
+                        +"<input type='button' value='확인'"
+                        +"onclick='insertId(\""+id+"\")'>";
+                div.innerHTML=userId;          
+            }
+        }
+        
+        function insertId(id){
+            //opener: 자기 자신을 연 기존창의 window객체 참조
+            //focus : 마우스를 클릭하여 입력상태를 만든 것 ,커서의 위치를 바꿔줌, 버튼 클릭시 엔터누르면 바로 이동
+            opener.document.getElementsByName("id")[0].value=id;
+            //팝업창을 열어준 애 = window.html의 id
+            opener.document.getElementsByName("pwd")[0].focus(); 
+            close();
+            
+        }
+    </script>
+
+</head>
+<body>
+    
+	<table>
+		<tr>
+			<td>아이디</td>
+			<td><input type="text" name="id"/></td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<input type="button" value="중복확인" onclick="confirmChk()"/>
+				<input type="button" value="취소" onclick="self.close()"/>
+			</td>
+		</tr>
+	</table>
+	<div></div>
+
+</body>
+</html>

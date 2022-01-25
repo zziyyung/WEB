@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        function tableVal(){ //추가버튼
+            var doc=document.forms[0]
+            //forms : 문서에 있는 폼 태그들 가져올거임 [첫번째 폼] ;.style 같은 형식
+            var vals=[doc.id.value , doc.pw.value , doc.addr.value , doc.phone.value]
+            //폼태그에 있는 name이 id,pw,addr,phone인 것의 밸류를 가져왕라
+            
+            // 유효성 검사 -예)11번가 로그인
+            for (var i=0 ; i < vals.length ; i++){
+                if(vals[i] == null || vals[i] == "" || vals[i] ==undefined){
+                    // ||=or
+                    alert("제대로 입력했는지 다시 한번 확인해주세요")
+                    return
+                }
+            }
+
+            document.getElementById("addtr").appendChild(createRow(vals))
+            //vals값 받아서 문서에 저장 
+        }
+
+        function createRow(vals){
+            //값들을 <tr>-<td> 형태로  td 안에 값 넣어줄거야 변환해서 넣어주는 함수 만드는거임
+            //vals를 파라미터로 받는다
+
+            var tr=document.createElement("tr")
+
+            for (var i =0 ; i < vals.length ; i++){
+                var td =document.createElement("td")
+                td.textContent=vals[i]
+                tr.appendChild(td)
+                //<tr>
+                    //<td> id </td>
+                //</tr>
+                //로 만드는 반복문 코드 
+            }
+            var deleteTd=document.createElement("td")
+            deleteTd.innerHTML="<input type='button' value='삭제' onclick='delRow(this)'>"
+            //delRow 함수에 this =input태그 보낼거에요
+            tr.appendChild(deleteTd)
+
+            /*
+            <tr>
+                <td>id값</td>
+                <td>pw값</td>
+                <td>addr값</td>
+                <td>phone값</td>
+                <td><input type='button' value='삭제' onclick='delRow(this)'></td>
+            </tr>
+            */
+
+            return tr //리턴해서 위에 createRow에 파라미터로 넣어줌
+        }
+
+        function delRow(ele){
+            //ele에 전달되는 node name :input
+            var delTr = ele.parentNode.parentNode
+            var tbody=document.getElementById("addtr") //tbody안에 들어가있었으니까
+            tbody.removeChild(delTr)
+        }
+
+        function deleteAll(){
+            var tbody=document.getElementById("addtr")
+
+            while (tbody.hasChildNodes()){
+                //tbody라는 노드에 child가 하나라도 있으면 t ,  없으면 f == 없을 때까지 반복
+                tbody.removeChild(tbody.lastChild)
+                //가장 마지막 자식 노드 반환 : lastChild .. 하나씩 지우는거지만 너무 빨라서 한 번에 지우는 것처럼 보임
+                //tbody에 있는 자식들 삭제할거야 - >어떤자식? (가장 마지막에 있는 자식)
+            }
+        }
+
+    </script>
+</head>
+<body>
+    
+    <form >
+        <table id="intable">
+            <tr>
+                <td>아이디</td>
+                <td><input type="text" name="id"></td>
+            </tr>
+
+            <tr>
+                <td>비밀번호</td>
+                <td><input type="text" name="pw"></td>
+            </tr>
+
+            <tr>
+                <td>주소</td>
+                <td><input type="text" name="addr"></td>
+            </tr>
+
+            <tr>
+                <td>전화번호</td>
+                <td><input type="text" name="phone"></td>
+            </tr>
+        </table>
+        <input type="button" value="추가" onclick="tableVal()">
+        <input type="button" value="삭제" onclick="deleteAll()"> 
+
+    </form>
+    <div id="addtable">
+        <table border="1" id="ctb">
+            <col width="100px">
+            <col width="100px"> 
+            <col width="300px"> 
+            <col width="200px"> 
+            <col width="100px"> 
+            <thead>
+                <tr>
+                    <th>아이디</th>
+                    <th>비밀번호</th>
+                    <th>주소</th>
+                    <th>전화번호</th>
+                    <th>삭제</th>
+                </tr>
+            </thead>
+            <tbody id="addtr"></tbody>
+        </table>
+    </div>
+
+
+</body>
+</html>

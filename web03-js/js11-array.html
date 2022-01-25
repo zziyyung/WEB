@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var arrayObj=new Array()
+        var arrayLiteral=['v1','v2', 3, 4] //객체 생성
+
+        var arrayObj02= new Array(5) //5칸짜리 빈 공간을 만들겠어요
+        //null 이랑 notdefined랑 다름
+
+        var arrayObj03= new Array(1,2,3,4,5)
+
+        onload=function(){//화면이 모두 로딩된 후 이 함수 실행
+            //alert(arrayObj03[1])
+            //alert(typeof(arrayObj03))
+        }
+
+
+        function multiArr(){
+            var len = 3;
+            var arr = new Array(len); //값이 없이 3개의 빈 공감을 만들겠다
+
+            for (var i = 0; i < arr.length; i++) {
+                arr[i] = new Array(len); //3칸짜리 배열을 만들고 그 한칸한칸 안에 또 3칸짜리 배열을 만듦 [[,,],[,,],[,,]]
+            }
+
+            arr[0][0] = "수박";
+            arr[0][1] = "딸기";
+            arr[0][2] = "키위";
+
+            arr[1][0] = 1;
+            arr[1][1] = 2;
+            arr[1][2] = 3;
+
+            arr[2][0] = ['lol', 'wow'];
+            arr[2][1] = ['python', 'numpy', 'pandas'];
+            arr[2][2] = ['javascript', ['function']];
+
+            arr[1][2] = 9;
+
+            // alert(arr);
+            // function -> jquery 로 바꾸고 싶다면?
+            arr[2][2][1][0] = 'jquery';
+            alert(arr.toString()); // toString()에 괄호 꼭 써주기 //배열안의 값들이 다 호출되는구나
+
+        }
+
+        
+
+        function joinTest(){
+            var nums=['1','2','3','4','5']
+            var res=nums.join('+')
+            //alert(res)
+            alert(eval(res)) // res의 명령어를 eval이 그대로 사용 ;;eval->해킹에 취약할 수 있음 사용 지양
+
+        }
+
+        function sortTest01(){
+            var arr =['a','b','d','c']
+            alert(arr)
+            arr.sort()
+            alert(arr)
+
+        }
+
+        function sortTest02(){
+            //ascii code순으로 정렬한다 
+            var arr=[1,2,6,11,3,65,21]
+            //alert(arr)
+            arr.sort(compareNum) //compareNum의 기준으로 sort가 정리해줄 것임 
+            alert(arr)
+        }
+
+        function compareNum(a,b){  //sort()가 내부적으로 두 개의 값을 가져오도록 설계되어있음 .
+            /* 숙제숙제숙제숙제숙제숙제숙제숙제
+                1 (양수): b가 a의 앞으로 오도록 
+                0 : a==b , a와 b의 순서가 바뀌지 않음
+                -1 (음수): a가 b의 앞으로 오도록
+
+            */
+            return a-b
+            // return b-a : 크기가 큰 순서부터 출력 
+        }
+
+        function reverseTest(){//거꾸로 가지고 온다 
+            var arr=[19,2,3,6,22,100]
+            arr.sort(function(a,b){return a-b}) //숫자 거꾸로 출력하고싶음 : 숫자 다로 정렬해주는 함수 만들어야함 
+            arr.reverse()
+            alert(arr)
+        }
+
+        function pushAndShift(){ //push : 추가추가추가
+            var queue=new Array()
+
+            queue.push("first")
+            queue.push("second")
+            queue.push("third")
+
+            alert(queue)
+
+            var a=queue.shift() //앞에서부터자름
+            alert(a) //자른 맨 앞의 값을 출력
+            alert(queue) //자르고 남겨진 애들
+
+            queue.push("4th")
+            alert(queue)
+
+            var b =queue.pop() //맨 마지막 출력하고 삭제
+            alert(b)
+            alert(queue)
+
+        }
+
+        function sliceTest(){
+            var arr01= new Array(1,2,3,4,5,6,7)
+            var slice01=arr01.slice(1,3) //1부터 3-1까지 출력
+            //alert(slice01)
+
+            var arr02=new Array(4)
+            arr02[0]=new Array(1,2)
+            arr02[1]=new Array(3,4)
+            arr02[2]=new Array(5,6)
+            arr02[3]=new Array(7,8)
+
+            var slice02 =arr02.slice(1,3)
+            //alert(slice02)
+            slice02[0][0]=33  //slice의 0 은 3
+
+            alert(arr02) //얕은 복사 , 원본도 변형 !
+
+        }
+
+    </script>
+
+
+</head>
+<body>
+    
+    <h1>배열 (객체)</h1> <!-- 여러개의 값을 효과적으로 관리하기 위한 객체 -->
+
+    <ul>
+        <li onclick="multiArr()">다중 배열</li>
+
+        <li onclick="joinTest()">join 함수</li>
+    
+        <li>배열 정렬
+            <ul>
+                <li onclick="sortTest01()">sort() : 문자 정렬</li>
+                <li onclick="sortTest02()">sort() : 숫자 정렬</li>
+                <li onclick="reverseTest()">reverse() : 거꾸로 정렬</li>
+            </ul>
+        </li>
+    
+        <li onclick="pushAndShift()">배열 Queue
+            <ul>
+                <li>push()</li>
+                <li>shift()</li>
+                <li>pop()</li>
+            </ul>
+        </li>
+    
+        <li onclick="sliceTest()">slice() : 배열의 부분을 가지고 새로운 배열 생성</li>
+    </ul>
+
+</body>
+</html>
