@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        /* relative : 원래 자신의 위치에서 얼마나 움직이는지
+            absolute : 부모의 위치 기준으로 , 상대적으로 얼마나 움직이는지
+            fixed : 브라우저 기준으로 얼마나 움직이는지
+        */
+        #box{
+            position: relative; /* 릴레이티브 속성이 없으면 자식이 계속 올라감 */
+            width: 500px;
+            margin: 10px;
+            padding: 10px;
+            border: 1px dotted red;
+        }
+        p{
+            width: 150px;
+            height: 150px;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .myred{
+            background: red;
+            position: relative; /* 본인의 위치에서 움직이라는 태그 없으니까 안 움직임 */
+        }
+        .myblue{
+            background: blue;
+            position: absolute; /* 부모위치 기준으로 왼쪾에서 백만큼 탑에서 삼십만큼 */
+            left: 100px;
+            top: 30px;
+            z-index: 2;
+        }
+        .mygreen{
+            background: green;
+            position: relative; /*원래 빨간색 밑 위치에서 왼쪽에서 30으로 탑에서 -30으로 */
+            left: 30px;
+            top: -30px;
+        }
+        .myred:hover{
+            z-index: 100;
+        }
+        .myblue:hover{
+            z-index: 100;
+        }
+        .mygreen:hover{
+            z-index: 100;
+        }
+
+        #fixed{
+            width: 100px;
+            height: 300px;
+            background: silver;
+            position: fixed;
+            right: 50px; /*오른쪽 기준으로 왼쪽이 플러스 */
+            top: 100px; /* 탑 기준으로 내려가는게 플러스*/
+        }
+    </style>
+    
+</head>
+<body>
+
+    <div id="box">   <!-- p위에 div 존재 = p의 부모는 div-->
+        <p class="myred">빨간박스</p>
+        <p class="mygreen">초록박스</p>
+        <p class="myblue">파란박스</p>
+    </div>
+    <div id="fixed">
+        fixed!!!
+    </div>
+    <br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br>
+
+</body>
+</html>

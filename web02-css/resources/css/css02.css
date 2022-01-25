@@ -1,0 +1,67 @@
+/*타입*/
+pre{
+    text-align: center;
+
+}
+
+/* id : 유일한 하나를 잡을 때*/
+#s-id01{
+    color: hotpink;
+}
+#s-id02{
+    color: darkred;
+}
+
+/* clss : 같은 여러개*/
+.s-cls01{
+    background-color: black;
+    color: white;
+}
+
+/* 전체 */
+*{
+    text-align: right;
+
+}
+
+
+/* 자식 : 아티클 태그의 자식인 피를 찾아서 , div >p*/
+#atc>p {
+    color: yellowgreen;
+}
+
+/* 인접 */
+span +pre {
+    background-color: cornflowerblue;
+}
+
+/* 하위 : 다 찾아라*/
+#atc02 span{
+    color: chocolate;
+}
+
+/* 속성 타이틀 속성을 가진 피 태그*/
+p[title]{
+    background-color: gray;
+}
+
+/* 가상 클래스 선택자 */
+a:link{
+    color: green;
+    font-size: 20pt;
+}
+a:visited{
+    color: gold;
+}
+a:hover{
+    background-color: black;
+    color: white;
+}
+a:active{
+    background-color: yellow;
+    color: tomato;
+}
+input:checked{
+    width: 100px;
+    height: 100px;
+}
