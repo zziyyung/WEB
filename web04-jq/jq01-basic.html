@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        img{
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+
+    <script src="resources/js/jquery-3.6.0.min.js"></script> 
+    <!--Jquery 사용 , 여닫는태그사이에 코드 넣으면 안됨-->
+
+    <script>
+        /*
+        jquery 기본 작성법 !
+        ->selector 표현식 
+        jQuery("selector").method;
+        $("selector").method;
+        ->$("p").css("color","red");
+
+        기능 구현 !!!
+        onload=function(){
+
+        }
+        -> 
+        1번
+        $(function(){
+
+        })
+
+        2번
+        $(document).ready(function(){
+
+        })
+        */
+
+        $(function(){ //아래 html 다 로딩된 후에 ~
+            $('#test-btn').click(function(){
+                alert("클릭했음!")
+            })
+            //tets-btn이라는 요소를 찾아와서 그 요소에 클릭이벤트가 발생했다면 '클릭했음!' 출력
+            //js에서는 onclick , jq에서는 click , click안에 파라미터로 function
+
+            $("img").click(function(){
+                $(this).hide()
+                //this = clcik 이벤트가 발생한 친구를(=img) 숨겨라 ! 
+            })
+        })
+
+        function showImg(){
+            //감춰진 그림을 보이게 하자
+            $("img").show()
+        }
+        function resizeImg(){
+            // 100 100으로 변경하자
+            // $("img").css("width","100px").css("height","100px")
+            // method 체이닝 (?) .css()-> $로 반환해서 뒤에 또 .css() 사용 가능
+            $("img").css({"width":"100px" , "height":"100px"})
+            //resize :이벤트 ( 사이즈가 바뀌면 ~ )
+        }
+
+        function addImg(){
+            $("img").last().after("<img src='resources/imgs/img01.jpg'>")
+            //last() : 여러개 중에 가장 마지막
+            //after() : 그 다음에 같은 형제에 이 요소 추가해주세요 ~
+        }
+
+        function toggleImg(){
+            //보였다 안보였다
+            $("img").toggle()
+            //toggle(): 보여지는 상태면 안 보여지게 안 보여지면 보여지게
+        }
+
+    </script>
+    <!--jquery 공홈에서 예제 확인 ! -->
+
+
+</head>
+<body>
+    
+    <h1>JQuery : javascript library</h1>
+    <!-- library(자바스크립트) = module (파이썬) : 기능을 묶어서 사용하라고 만들어줌-->
+
+    <button id="test-btn">click me</button>
+    <br>
+    <button onclick="showImg()">이미지 보이기</button>
+    <button onclick="resizeImg()">이미지 축소</button>
+    <button onclick="addImg()">이미지 추가</button>
+    <button onclick="toggleImg()">이미지 숨기기/보이기</button>
+    <br>
+    <br>
+    <div>
+        <img src="resources/imgs/img01.jpg" alt="img01">
+    </div>
+
+
+</body>
+</html>

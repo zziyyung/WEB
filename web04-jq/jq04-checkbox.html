@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="resources/js/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(function(){// 유효성검사
+            $("#signal").submit(function(){
+                if($(".infobox").val()==null ||$(".infobox").val()=="" ){
+                    //infobox 클래스 값이 null이거나 없으면
+                    $(".error").show()
+                    //에러라는 클래스를 가진 걸 보여주세요, 
+                    //hidden 속성을 걸어놔서 안보였다가 submit() 함수로 등장!
+                    return false
+                    //이벤트의 전파를 막아요 (폼으로 전달되는 이벤트가 전달 안될것이다 !)
+                }
+            })
+             //전달하는 이벤트가 발생했을 때 :(type="submit")->입력버튼 클릭하면 submit 이벤트 발생
+             //입력버튼을 누르면 빈칸의 name 을 query string으로 만들어 form태그의 action으로 넘어갈건데 .....
+        
+
+            $("#confirm").click(function(){
+                $("#result").empty()
+                
+                var total =0
+                //checkbox중 checked 되어 있는 요소들을 가지고 와서
+                // .each() 를 사용하여 해당요소들의 가격을 가져오고
+                $("input[name=chk]:checked").each(function(i){
+                // $("input[name=chk]:checked") ==반복가능한 객체 (무언가가 들어있는 덩어리)
+                // each() =python map()
+                    //console.log(i)
+
+                    //var chk=$(this)
+                    //가지고 온 하나
+
+                    var chk = $("input[name=chk]:checked").eq(i)
+                    // console.log(chk)
+
+                    var book=chk.next().text()
+                    // 자기 바로 옆 b 태그의 text =python
+                    var price=chk.val()
+                    $("#result").append(book + ":" + price + "<br>")
+                    
+                    // 더해서
+                    total += parseInt(price)
+                })
+                // id가 result인 요소의 안에 값을 출력하자
+                $("#result").append(total)  
+                
+                
+                ///-----위치 잘 맞추기!!!
+                //숙제 
+                //모두 선택되어있으면 name이 all인 체크박스도 체크
+                //하나라도 체크 해제되면 name이 all인 체크박스 체크 해제
+                $("input[name=chk]").click(function(){
+
+                })
+            })  
+            
+            //숙제
+            function allChk(bool){
+
+            }
+        })
+
+        
+    </script>
+
+</head>
+<body>
+    
+    <form id="signal">
+        <div>
+            <span class="label">User ID</span>
+            <input type="text" class="infobox" name="userid">
+            <span class="error" hidden="" style="color:red">반드시 입력하세요 !!!</span>
+        </div>
+        <input type="submit" class="submit" value="입력">
+    </form>
+
+    <hr>
+
+    <fieldset style="width: 300px;">
+        <legend>체크 여부 확인</legend>
+
+        <input type="checkbox" name="all" onclick="allChk(this.checked)">전체선택
+        <br>
+        <input type="checkbox" name="chk" value="20000"><b>python</b>
+        <br>
+        <input type="checkbox" name="chk" value="25000"><b>pandas</b>
+        <br>
+        <input type="checkbox" name="chk" value="30000"><b>django</b>
+        <br>
+
+        <input type="button" id="confirm" value="확인">
+        <br>
+
+        <span>선택한 가격</span>
+        <div id="result"></div>
+
+    </fieldset>
+    
+</body>
+</html>
