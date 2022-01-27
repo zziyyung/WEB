@@ -53,22 +53,36 @@
                 $("#result").append(total)  
                 
                 
-                ///-----위치 잘 맞추기!!!
+            
+            })  
+
+             ///-----위치 잘 맞추기!!!
                 //숙제 
                 //모두 선택되어있으면 name이 all인 체크박스도 체크
                 //하나라도 체크 해제되면 name이 all인 체크박스 체크 해제
-                $("input[name=chk]").click(function(){
-
-                })
-            })  
+            $("input[name=chk]").click(function(){
+                if($("input[name=chk]").length == $("input[name=chk]:checked").length){
+                    $("input[name=all]").prop("checked",true)
+                } else{
+                    $("input[name=all]").prop("checked",false)
+                }
+            })
             
-            //숙제
-            function allChk(bool){
-
-            }
         })
 
-        
+        //숙제 ???????
+        //input 태그 중에 name이 chk인 것을 가져와서
+        //each()로 각각의 값을 가져와서 this=가져온 것들의 속성(prop) 중 checked를 bool값 t/f !
+        //prop("checked")-> 속성의 값을 가져오겠다
+        function allChk(bool){
+            /*
+            $("input[name=chk]").each(function(){
+                $(this).prop("checked",bool)
+            })
+            */
+            $("input[name=chk]").prop("checked",bool)
+        } 
+     
     </script>
 
 </head>

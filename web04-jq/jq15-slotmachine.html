@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        img{
+            width: 150px;
+            height: 150px;
+            float: left;
+        }
+        #menubox{position: relative;}
+        #menu{overflow: auto;}
+        .sel{
+            width: 140px;
+            height: 140px;
+            border: 5px dotted red;
+            position: absolute;
+            left: 300px;
+        }
+        button{
+            width: 150px;
+            height: 50px;
+            margin-left: 300px;
+        }
+    </style>
+
+    <script src="resources/js/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(function(){
+            //일정한 시간 간격으로 작업을 수행하기 위해서 사용 , 1초=1000ms ,0.1초=100ms
+            setInterval(function(){
+                var div=$("#menu")
+                $(".active").first().appendTo(div)
+                // $(".active").first() :액티브 클래스를 가진 것들 중에 첫번째 가져와라 
+                // appendTo() :타겟의 끝에다가 추가해줄거에요 = 자식요소 중에 가장 뒤에 (타겟 뒤)
+                // append : 자식요소 중에 가장 뒤에  (타겟 앞)
+                // $(".active").first()가 이미 있는애이기 때문에 추가가 아니라 이. 동 ! 맨 뒤로 이 동 !
+                // <img src="resources/imgs/img01.jpg" alt="img01" class="active">
+                // setInterval은 멈춘게 아니라 계속 돌고 있는데 stop버튼을 누르고 클래스가 사라져 
+                // 함수 멈춘 것처럼 보임  !
+            },1000)
+
+// 1 버튼을 클릭해서 active클래스가 생성 (이미지 태그 6개에 클래스 다 붙음)
+// 2 active클래스인 것(이미지 태그들) 중에서 첫번째것을 선택 ->$(".active").first()
+// 3 선택한 것을 id=menu인 div의 '자식요소'중에 가장 뒤로 이동한다 = (이미지 1번이 마지막이었던 6번 뒤로 이동하는 이유) ->.appendTo(div)
+// ** appendTo(target)는 타겟의 자식 요소 중 가장 뒤에 선택한 것을 추가하는 것인데 !
+//    선택한 것이 이미 내부에 있다면 ! 추가하는 것이 아니라 '이동'하는 것임 !
+// 4 버튼을 다시 클릭(stop)하면 코드상 클래스가 사라져서 setInterval()함수가 멈춘 것처럼 보이지만 , 
+// 멈춘것이 아니라 함수는 계속 돌아가고 있음. but, active클래스가 없어서 아무일도 일어나지 않는 것!
+
+            $("button").click(function(){
+                $("img").toggleClass("active")
+                //active 클래스를 생겼다가 없앴다가 
+                if($("button").text() == "start"){
+                    //버튼태그를 클릭했을 때 버튼태그의 텍스트가 start라면
+                    $("button").text("stop")
+                }else{
+                    $("button").text("start")
+                }
+            })
+        })
+
+    </script>
+</head>
+<body>
+    
+    <h1>SlotMachine</h1>
+
+    <div id="menubox">
+        <div class="sel"></div>
+
+        <div id="menu">
+            <img src="resources/imgs/img01.jpg" alt="img01">
+            <img src="resources/imgs/img02.jpg" alt="img02">
+            <img src="resources/imgs/img03.jpg" alt="img03">
+            <img src="resources/imgs/img04.jpg" alt="img04">
+            <img src="resources/imgs/img05.jpg" alt="img05">
+        </div>
+
+        <button>start</button>
+    </div>
+
+
+</body>
+</html>

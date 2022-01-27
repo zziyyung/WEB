@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{border: 1px solid red;}
+    </style>
+
+    <script src="resources/js/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(function(){
+            //파라미터 값이 다르다 ? content , target
+            $("button:eq(0)").click(function(){
+                $("#base").after("<div>새로운 엘리먼트(after)</div>")
+                //기존 div 바로 다음에 추가
+            })
+            $("button:eq(1)").click(function(){
+                $("<div>새로운 엘리먼트(insertAfter)</div>").insertAfter("#base")
+                //div태그 새로 생성해서 기존 div 밑에 추가
+            })
+            $("button:eq(2)").click(function(){
+                $("#base").before("<div>새로운 엘리먼트(before)</div>")
+                //기존 div 바로 전에 추가
+                //target이 앞 , funtion()까지 추가 가능(만들어져있는 것에 함수기능을 하니까 가능)
+            })
+            $("button:eq(3)").click(function(){
+                $("<div>새로운 엘리먼트(insertBefore)</div>").insertBefore("#base")
+            }) //div태그 새로 생성해서 기존 div 전에 추가
+                //target이 뒤 ,function()은 없음 (안 만들어져있어서 함수기능 불가)
+
+        })
+    </script>
+
+</head>
+<body>
+    
+    <button>after()</button>
+    <button>insertAfter()</button>
+    <button>before()</button>
+    <button>insertBefore()</button>
+
+    <div id="base">
+        <p>외부 삽입</p>
+    </div>
+
+
+</body>
+</html>
