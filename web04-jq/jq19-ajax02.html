@@ -10,6 +10,7 @@
         *{margin:0px;padding:0px;}
         table{width: 900px;}
         table tr:nth-child(1){background: orange;}
+        /*nth-child는 1부터 시작*/
         fieldset{width: 400px;}
         body {width: 1000px; margin: 50px auto;}
     </style>
@@ -21,10 +22,12 @@
     
         $(function(){
             $("#emp_search").click(function(){
+                //조회 버튼을 클릭하면
                 
                 $.ajax({
                     url:"emplist.xml",
-                    dataType:"xml", //문자열->xml객체로 변환
+                    dataType:"xml", 
+                    //문자열->xml객체로 변환
                     success:function(data){
                         var empRowList=$(data).find("ROW");
                         $("body").append(makeTable(empRowList));
