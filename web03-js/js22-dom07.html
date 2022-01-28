@@ -60,7 +60,7 @@
         }
 
         function delRow(ele){
-            //ele에 전달되는 node name :input
+            //ele에 전달되는 node name :input  --> parentNode가 두번 호출 돼야 tr
             var delTr = ele.parentNode.parentNode
             var tbody=document.getElementById("addtr") //tbody안에 들어가있었으니까
             tbody.removeChild(delTr)
