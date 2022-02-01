@@ -3,10 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!--meta : 웹 페이지의 보이지 않는 정보 제공 
+                페이지의 요약,키워드,작성자,크롤링 정책 등
+                http-equiv="항목명" : 브라우저가 서버에 명령을 내리는 속성 ==name
+                name="정보 이름" : <meta> 정보의 이름을 정할 수 있으며 안 정하면 http-equiv와 같은 역할
+                content="정보 값" : <meta> 정보의 내용 지정-->
+    <title>당신 근처의 당근마켓</title>
+    <link rel="shortcut icon" type="image/x-icon" href="imgs/shortcut icon01.png" >
+    <!--브라우저 파비콘으로 삽입-->
+    <style>
+        body{margin: 0; padding: 0; outline: none;}
+        #fixed-bar{width:100%; background-color: white; position: fixed; top: 0; left: 0; right: 0; z-index:100;}
+        .fixed-bar-box-shadow{box-sizing: border-box; border-bottom: 1px solid rgba(0,0,0,0.04);}
+        #fixed-bar #fixed-bar-wrap{width: 1024px; margin: 0 auto; padding: 16x 0; position: relative;}
+        h1{font-size: 2rem;}
+        a{-webkit-tap-highlight-color: rgba(73,80,87,0.05);}
+        a:-webkit-any-link{color: -webkit-link; cursor: pointer; text-decoration: underline;}
+        .sr-only{position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); border: 0 ;}
+
+
+    </style>
 </head>
 <body>
-    
+    <header id="fixed-bar" class="fixed-bar-box-shadow">
+        <div id="fixed-bar-wrap">
+            <!--div : 논리적 관계와는 상관 없이 요소를 나눠야 할 때 사용-->
+            <h1 id="fixed-bar-logo-title">
+                <a href="http://www.daangn.com/">
+                    <span class="sr-only">당근마켓</span>
+                    <!--????span 왜 들어가는지 모르겠네?-->
+                    <img class="fixed-logo" alt="당근마켓" src="imgs/logo01.svg">
+                </a>
+            </h1>
+
+            <section id="fixed-bar-search">
+                <!--setion : 논리적으로 관계 있는 것을 분리 할 때 사용-->
+                <div class="search-input-wrap ">
+                    <span class="sr-only">검색</span>
+                    <input type="text" name="header-search-input" id="header-search-input" class="fixed-search-input" placeholder="동네 이름,물품명 등을 검색해보세요!">
+                    <!--placeholder : 입력박스에 무엇을 입력-->
+                    <button id="header-search-button">
+                        <img class="fixed-search-icon" src="imgs/search01.svg" alt="search">
+                    </button>
+                </div>
+            </section>
+      
+            <section id="fixed-bar-menu">
+                <div class="fixed-download-wrapper">
+                    <input type="checkbox" id="fixed-menu-checkbox" class="fixed-checkbox">
+                    <label for="fixed-menu-checkbox" class="fixed-label">" 다운로드 "
+                    <!--
+                        label : label태그를 선택하면 해당 input으로 포커스 이동 , for=연결할 태그의 id 속성의 값
+                        svg : 2차원 그래픽용 XML 기반 형식, viewbox=화면의 크기에 맞춰 크기,위치 조절 속성 ,fill=색상,
+                    -->
+                        <svg class="menu-icon-svg" width="12" height="7" viewbox="0 0 12 7" fill="nond" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 1L6 6L11 1" stroke="#4D5159" strokewidth="1.5" strokelinecap="round" strokelinejoin="round"></path>
+                        </svg>
+                    </label>
+                    <ul class="fixed-menu-ul">
+                        <li>
+                            <a target="_blank" class="menu-anchor" id="header-download-button-ios" href="https://apps.apple.com/kr/app/pangyojangteo/id1018769995?l=ko&ls=1">
+                                <img src="imgs/download-ios.svg" alt="App Store">
+                                <span>App Store</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a target="_blank" class="menu-anchor" id="header-download-button-android" href="https://play.google.com/store/apps/details?id=com.towneers.www">
+                                <img src="imgs/download-android.svg" alt="Google Play">
+                                <span>Google Play</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <a href="http://chat.daangn.com" target="_blank">
+                <!--target="_blank" : 보통 새로운 웹페이지 여는 명령어에서 쓰임 
+                    ;새 윈도우 창을 열어 웹페이지 열고, 기존의 창은 그대로 남음
+                    _self , _parent , _top-->
+                    <button class="chat-button">
+                        <span class="button-text">당근채팅</span>
+                        <span class="button-beta">Beta</span>
+                    </button>
+                </a>     
+            </section>
+        </div>
+
+
+    </header>
+
+
+    <footer>
+
+    </footer>
 </body>
 </html>
