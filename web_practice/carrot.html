@@ -13,14 +13,80 @@
     <link rel="shortcut icon" type="image/x-icon" href="imgs/shortcut icon01.png" >
     <!--브라우저 파비콘으로 삽입-->
     <style>
-        body{margin: 0; padding: 0; outline: none;}
-        #fixed-bar{width:100%; background-color: white; position: fixed; top: 0; left: 0; right: 0; z-index:100;}
-        .fixed-bar-box-shadow{box-sizing: border-box; border-bottom: 1px solid rgba(0,0,0,0.04);}
-        #fixed-bar #fixed-bar-wrap{width: 1024px; margin: 0 auto; padding: 16x 0; position: relative;}
-        h1{font-size: 2rem;}
+        /*
         a{-webkit-tap-highlight-color: rgba(73,80,87,0.05);}
         a:-webkit-any-link{color: -webkit-link; cursor: pointer; text-decoration: underline;}
-        .sr-only{position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); border: 0 ;}
+        */
+        *{margin: 0; padding: 0; outline: none;}
+        /*outline : ? */
+        #fixed-bar{width: 100%; background-color: white; position: fixed; top: 0; left: 0; right: 0; z-index: 100;}
+        /*width : %(상대값) , top,left,bottom,right : 그 방향에서 얼마만큼 떨어져 위치시킬 것인가 , z-index : 숫자가 클수록 위로 올라오고 ,작을 수록 아래로 내려감 */
+        .fixed-bar-box-shadow{box-sizing: border-box; border-bottom: 1px solid rgba(0,0,0,0.04); }
+        /*box-sizing : ? */
+        #fixed-bar-wrap{width: 1024px; margin: 0 auto; padding: 16px 0; position: relative;}
+        
+        /*line-height: , margin:  */
+        .sr-only{position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); border: 0;}
+        /* #fixed-bar-search{position: absolute; left: 152px; top: 16px; border-radius: 5px; border: solid 1px #e9ecef; text-decoration: none; padding: 0 1.6rem; height: 40px; width: 370px;} */
+        .fixed-logo{width: 120px; vertical-align: text-bottom; margin-bottom: 5px;}
+        
+        #fixed-bar-search{position: absolute; left: 152px; top: 16px;}
+        .search-input-wrap{height: 40px; width: 400px; border: 1px solid #e9ecef; border-radius: 5px;}
+        #header-search-input{font-size: 16px; width: 325px; padding: 10px; border: 0px; outline: none; float: left;}
+        /*display:block -> 블록요소처럼 요소 앞 뒤로 줄바꿈 , font-famlily : inherit -> 부모 요소의 속성값을 상속받음*/
+        #header-search-button{width: 50px; height: 100%; border: 0px; outline: none; float: right; background: white; cursor: pointer;}
+        .fixed-search-icon{width: 19px; height: 19px;}
+        /* .fixed-search-icon{width: 19px; height: 19px; fill: #868e96; padding: 1rem 0;} */
+
+        #fixed-bar-menu{position: absolute; display: flex; right: 0; top: 16px; color: #4D5159;}
+        #fixed-menu-checkbox{border: solid 1px #CED4DA; padding: 1rem 1.4rem; margin: 1.6rem 0; font-size: 1.6rem; border-radius: 3px;}
+        .fixed-label{display: inline-flex; width: 120px; height: 40px; justify-content: center; align-items: center; font-style: normal; font-weight: bold; font-size: 16px; letter-spacing: -0.02em; cursor: pointer;}
+        .fixed-menu-ul{list-style-type: none; display: none; position: absolute; width: 200px; height: 114px; top: 46px; right: 0; border: 1px solid #868B94; padding: 24px; background: #F8F9FA; box-sizing: border-box; border-radius: 6px; opacity: 0; transition: opacity 0.5s;}
+
+        .chat-button{width: 120px; height: 40px; background-color: #fff; border: 1px solid #D1D3D8; box-sizing: border-box; border-radius: 6px; font-size: 0;}
+        .button-text{color: #4D5159; font-size: 16px; font-weight: bold; vertical-align: middle;}
+        .button-beta{margin-top: 1px; margin-left: 2px; font-size: 14px; color: #FF7E36; font-weight: bold; vertical-align: middle;}
+
+        #home-main-section-top{margin-top: 72px; padding-top: 24px; background-color: #FBF7F2;}
+        #home-main-top{width: 1024px; height: 760px; margin: 0 auto; position: relative;}
+        /* .home-main-title{font-size: 4.8rem; line-height: 1.3; padding-top: 27rem; margin-bottom: 3.2rem; letter-spacing: -0.4px;}
+        .text-m{font-size: 1.6rem !important; line-height: 1.5; letter-spacing: -0.3px;}
+        p{display: block; margin-block-start: 1em; margin-block-end: 1em; margin-inline-start: 0px; margin-inline-end: 0px;} */
+        .home-main-title01{font-size: 3.0rem; line-height: 1.3; padding-top: 17rem; margin-bottom: 2rem; letter-spacing: -0.4px;}
+        .text-m01{font-size: 0.92em !important; line-height: 1.5; letter-spacing: -0.3px;}
+        .home-main-image-top{position: absolute; right: -84px; bottom: 0; width: 804px; height: 685px; background: #FBF7F2 url(https://d1unjqcospf8gs.cloudfront.net/assets/home/main/3x/image-top-68ba12f0da7b5af9a574ed92ca8b3a9c0068db176b566dd374ee50359693358b.png) no-repeat; background-size: 804px 685px;}
+
+        .home-main-section{padding: 6rem 0;}
+        /*padding:6rem 0 ?*/
+        .home-main-content{width: 1024px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between;}
+        /*margin:0 auto -> 글씨가 가운데의 왼쪽으로 옴 justify-content: space-between -> 오른쪽 정렬 ? */
+        .home-main-image-01{background-image: url(https://d1unjqcospf8gs.cloudfront.net/assets/home/main/3x/image-1-39ac203e8922f615aa3843337871cb654b81269e872494128bf08236157c5f6a.png); background-size: 532px 684px; width: 532px; height: 684px; }
+        .home-main-title02{font-size: 2.5em; line-height: 1.35; margin-bottom: 2rem; letter-spacing: -0.4px;}
+        .text-m02{font-size: 1rem !important; line-height: 1.5; letter-spacing: -0.3px;}
+        .home-buttons{margin-top: 3.2rem;}
+        .home-button{background-color: #F1F3F5; color: #212529; border: none; border-radius: 6px; text-decoration: none; padding: 1.2rem 2rem; display: inline-block; }
+        .text-1{font-size: 1.1rem !important; line-height: 1.47; letter-spacing: -0.3px;}
+        .text-bold{font-weight: bold;}
+        .ml-3{margin-left: 1.6rem;}
+
+        .background-pale-green{background-color: #E6F3E6;}
+        .home-main-reverse{display: flex ; flex-direction: row-reverse; align-items: center;}
+        /*flex-direction: row-reverse;*/
+        .home-main-image{display: inline-block;}
+        .home-main-image-02{background-image: url(https://d1unjqcospf8gs.cloudfront.net/assets/home/main/3x/image-2-f286322ab98acedf914a05bf77e84c67dcb897c8ccb543e66f6afea9d366d06d.png); background-size: 546px 740px; width: 546px; height: 740px;}
+        .home-main-title03{font-size: 2.5rem; line-height: 1.35; margin-bottom: 2rem; letter-spacing: -0.4px;}
+        .text-m03{font-size: 1rem !important; line-height: 1.5; letter-spacing: -0.3px;}
+        .home-story-list{margin-top: 3rem; display: flex; justify-content: space-between; list-style-type: none;}
+        .home-story-list-item{margin-right: 3rem; margin-left: 0; max-width: 8rem;}
+        .icon-story{width: 56px; height: 56px; background-size: 56px 56px;}
+        /*background-size*/
+        .icon-story-01{background-image: url(https://d1unjqcospf8gs.cloudfront.net/assets/home/main/icon-story-1-9226479b836cdc960291ffda91ace46c90a632f6cc868aa8983b3624e662a924.svg);}
+        .icon-story-02{background-image: url(https://d1unjqcospf8gs.cloudfront.net/assets/home/main/icon-story-2-208bb88cad31e335b40bc8ac5b7684dcf8a36d77ac50770a497a9c967a3bfc4f.svg);}
+        .icon-story-03{background-image: url(https://d1unjqcospf8gs.cloudfront.net/assets/home/main/icon-story-3-0a14d64c6101a7271655747d8401b9f71506578f8a4c0640608074e977bbc7c0.svg);}
+        .text-s{font-size: 0.9rem !important; line-height: 1.5;}
+        .text-xs{font-size: 0.8em !important; line-height: 1.5;}
+        .mb-2{margin-bottom: 0.8rem;}
+        .mt-3{margin-top: 1.6rem;}
 
 
     </style>
@@ -87,10 +153,83 @@
                 </a>     
             </section>
         </div>
-
-
     </header>
 
+    <section id="home-main-section-top" class="background-pale-peach">
+        <div id="home-main-top">
+            <div class="home-main-desc">
+                <h1 class="home-main-title01">
+                    당신 근처의
+                    <br>
+                    당근마켓
+                </h1>
+                <p class="text-m01">
+                    중고 거래부터 동네 정보까지, 이웃과 함께해요.
+                    <br>
+                    가깝고 따뜻한 당신의 근처를 만들어요.
+                </p>
+            </div>
+            
+            <div class="home-main-image-top"></div>
+        </div>
+    </section>
+
+    <section class="home-main-section">
+        <div class="home-main-content">
+            <div class="home-main-image home-main-image-01"></div>
+            <div>
+                <h1 class="home-main-title02">
+                    우리 동네
+                    <br>
+                    중고 직거래 마켓
+                </h1>
+                <p class="text-m02">
+                    동네 주민들과 가깝고 따뜻한 거래를 지금 경험해보세요.
+                </p>
+                <div class="home-buttons">
+                    <a class="home-button text-1 text-bold" href="https://www.daangn.com/hot_articles">인기매물 보기</a>
+                    <a class="home-button text-1 text-bold ml-3" href="https://www.daangn.com/trust">믿을 수 있는 중고거래</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="home-main-section background-pale-green">
+        <div class="home-main-content home-main-reverse">
+            <div class="home-main-image home-main-image-02"></div>
+            <div>
+                <h1 class="home-main-title03">
+                    이웃과 함께 하는
+                    <br>
+                    동네생활
+                </h1>
+                <p class="text-m03">
+                    우리 동네의 다양한 이야기를 이웃과 함께 나누어요.
+                </p>
+                <ul class="home-story-list">
+                    <li class="home-story-list-item">
+                        <div class="icon-story icon-story-01"></div>
+                        <div class="text-s text-bold mt-3 mb-2">우리동네질문</div>
+                        <div class="text-xs">궁금한 게 있을 땐 이웃에게 물어보세요.</div>
+                    </li>
+                    <li class="home-story-list-item">
+                        <div class="icon-story icon-story-02"></div>
+                        <div class="text-s text-bold mt-3 mb-2">동네분실센터</div>
+                        <div class="text-xs">무언가를 잃어버렸을 때, 함께 찾을 수 있어요.</div>
+                    </li>
+                    <li class="home-story-list-item">
+                        <div class="icon-story icon-story-03"></div>
+                        <div class="text-s text-bold mt-3 mb-2">동네모임</div>
+                        <div class="text-xs">관심사가 비슷한 이웃과 온오프라인으로 만나요.</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section></section>
+    <section></section>
+    <section></section>
 
     <footer>
 
